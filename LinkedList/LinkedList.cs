@@ -18,6 +18,25 @@ namespace List
 			this.size = 0;
 		}
 
+		public T this[int index]
+		{
+			get
+			{
+				if (index < 0)
+					throw new Exception("Error: Index <= 0");
+				
+				Node<T> current = this.head;
+				for (int i = 0; i < index; i++)
+				{
+					if (current.Next == null)
+						throw new Exception("Error: next element is empty");
+
+					current = current.Next;
+				}
+				return current.Element;
+			}
+		}
+
 		public void AddLast(T element)
 		{
 			Node<T> newNodes = new Node<T>(element);

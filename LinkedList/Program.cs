@@ -41,6 +41,30 @@ namespace List
 			Console.WriteLine("--------------Clear List------------");
 			List.Clear();
 			ReturnListItem(List);
+
+			Console.WriteLine("--------------Compare Minions------------");
+			
+			Minions minionFirst = new Minions("Martin", 19, 3);
+			Minions minionSecond = new Minions("Martin", 19, 3);
+
+			Console.WriteLine(minionFirst.CompareTo(minionSecond)); // Output: 0
+
+			MinionsComparator comparator = new MinionsComparator();
+			Console.WriteLine(comparator.Compare(minionFirst, minionSecond)); // Output: 0
+
+			Console.WriteLine("--------------Indexing------------");
+			
+			MyLinkedList<Minions> ListIndex = new MyLinkedList<Minions>();
+
+			ListIndex.AddLast(minionFirst);
+			ListIndex.AddLast(new Minions("Alex", 20, 1));
+
+			Console.WriteLine(ListIndex[0].Name + " " + ListIndex[0].Age);
+			Console.WriteLine(ListIndex[1].Name + " " + ListIndex[1].Age);
+
+			Console.WriteLine("--------------Stack------------");
+			StackTesting();
+
 		}
 
 		static void ReturnListItem(MyLinkedList<Minions> List)
@@ -50,6 +74,29 @@ namespace List
 				Console.WriteLine("Minion: {0} {1} {2}", item.Name, item.Age, item.TownId);
 			}
 			Console.WriteLine("Size: " + List.Size());
+		}
+
+		static void StackTesting()
+		{
+			var list = new Stack<string>();
+
+			list.Push("USA");
+			list.Push("Russia");
+			list.Push("Italy");
+			list.Push("France");
+			list.Push("Germany");
+			list.Push("Canada");
+
+			Console.WriteLine(list.Pop());
+			Console.WriteLine(list.Pop());
+
+			Console.WriteLine("---------");
+
+			foreach (var l in list)
+				Console.WriteLine(l);
+
+			Console.WriteLine("Capacity: {0}", list.Capacity);
+			Console.WriteLine("Size now: {0}", list.Size());
 		}
 	}
 }
